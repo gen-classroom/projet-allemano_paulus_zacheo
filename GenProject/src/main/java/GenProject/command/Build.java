@@ -16,7 +16,6 @@ public class Build implements Callable<Integer>
     /**
      * Méthode pour l'appel de la commande build.
      */
-
     @Override public Integer call()
     {
         System.out.printf("build");
