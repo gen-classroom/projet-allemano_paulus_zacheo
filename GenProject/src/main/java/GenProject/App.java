@@ -1,13 +1,38 @@
 package GenProject;
 
+import picocli.CommandLine;
+import java.util.concurrent.Callable;
+import GenProject.command.Build;
+
 /**
- * Hello world!
- *
+ * Class implémentant la commande principale statique.
+ * @author Allemano Enzo
  */
-public class App 
+@CommandLine.Command(
+        name = "statique",
+        description = "A brand new static site generator.",
+        subcommands = {Build.class})
+public class App implements Callable<Integer>
 {
-    public static void main( String[] args )
+    /**
+     * Méthode pour l'appel de la commande de création statique
+     */
+    @Override
+    public Integer call() throws Exception
     {
-        System.out.println( "Hello World!" );
+        CommandLine.usage(this, System.out);
+        return 0;
+    }
+
+
+    /**
+     * Point d'entrée du programme.
+     * @param args Arguments
+     */
+    public static void main(String[] args)
+    {
+        int exitCode = new CommandLine(new App()).execute(args);
+
+        System.exit(exitCode);
     }
 }
