@@ -1,4 +1,4 @@
-package GenProject;
+package GenProject.commandTest;
 
 import org.junit.Test;
 
