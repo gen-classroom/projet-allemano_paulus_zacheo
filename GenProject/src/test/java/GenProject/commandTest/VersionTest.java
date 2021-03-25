@@ -13,8 +13,11 @@ public class VersionTest
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
+    public void shouldReturnTheVersion()
     {
-        assertTrue( true );
+        String version = "0.0.1";
+        String result = ""; //return of the function getVersion
+        boolean IsEqual = version.equals(result);
+        assertTrue(IsEqual);
     }
 }
