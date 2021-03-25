@@ -3,11 +3,11 @@ package GenProject.command;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.Command;
 
-@Command(name = "build", description = "Build a static site")
-public class Build implements Callable<Integer> {
+@Command(name = "serve", description = "Serve a static site")
+public class Serve implements Callable<Integer> {
 
   @Override public Integer call() {
-    System.out.printf("build");
+    System.out.printf("serve");
     return 1;
   }
 
