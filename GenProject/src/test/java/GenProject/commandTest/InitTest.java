@@ -1,20 +1,36 @@
 package GenProject.commandTest;
 
-import org.junit.Test;
+import GenProject.Statique;
+import org.junit.jupiter.api.Test;
+import org.apache.commons.io.FileUtils;
+import picocli.CommandLine;
 
-import static org.junit.Assert.assertTrue;
+import java.io.File;
+import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit test for simple App.
  */
 public class InitTest
 {
-    /**
-     * Rigorous Test :-)
-     */
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void initShouldWork() throws IOException {
+        boolean result = false;
+        String pathStr = "./monSite";
+
+        new CommandLine(new Statique()).execute("init", pathStr);
+
+        File indexJson = new File(pathStr + "/index.json");
+        File configJson = new File(pathStr + "/config.json");
+        File indexMd = new File(pathStr + "/index.md");
+
+
+        if (indexJson.exists() && configJson.exists() && indexMd.exists() ){
+            result = true;
+        }
+        assertTrue(result);
+
+        FileUtils.deleteDirectory(new File("./monSite"));
     }
 }
