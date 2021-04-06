@@ -17,20 +17,19 @@ public class InitTest
     @Test
     public void initShouldWork() throws IOException {
         boolean result = false;
-        String pathStr = "./monSite";
+        String dir = "/monSite";
+        String pathStr = System.getProperty("user.dir") + dir;
 
-        new CommandLine(new Statique()).execute("init", pathStr);
+        new CommandLine(new Statique()).execute("init", dir);
 
-        File indexJson = new File(pathStr + "/index.json");
         File configJson = new File(pathStr + "/config.json");
         File indexMd = new File(pathStr + "/index.md");
 
 
-        if (indexJson.exists() && configJson.exists() && indexMd.exists() ){
+        if (configJson.exists() && indexMd.exists() ){
             result = true;
         }
         assertTrue(result);
 
-        FileUtils.deleteDirectory(new File("./monSite"));
     }
 }

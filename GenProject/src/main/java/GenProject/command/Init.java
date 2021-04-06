@@ -1,14 +1,58 @@
 package GenProject.command;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Callable;
+
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
-@Command(name = "init", description = "Initialize a static site directory")
+
+@Command(name = "init", description = "Initialize a static site directory with the wanted sub-files")
+
 public class Init implements Callable<Integer> {
+  @CommandLine.Parameters(index = "0", description = "the root pathname")
+  private String rootPathname;
 
-  @Override public Integer call() {
-    System.out.printf("init");
-    return 1;
+  @Override
+  public Integer call() throws IOException {
+    final String baseIndexText = "titre: Mon premier article\n" +
+            "auteur: Bleuet Renard\n" +
+            "date: 2021-03-10"  +
+            "---\n" +
+            "# Mon premier article\n" +
+            "## Mon sous-titre\n" +
+            "Le contenu de mon article.";
+
+    if (!(rootPathname.charAt(0) == '/')){
+      System.out.println("The parameters must begin with /");
+      return 0;
+    }
+
+    StringBuilder path = new StringBuilder(System.getProperty("user.dir") + rootPathname);
+
+    new File(path.toString()).mkdirs();
+    Writer indexWriter = new BufferedWriter(
+            new OutputStreamWriter(
+                    new FileOutputStream(path.toString() + "/index.md"),
+                    StandardCharsets.UTF_8
+            )
+    );
+
+    indexWriter.write(baseIndexText);
+
+    indexWriter.close();
+
+    Writer configWriter = new BufferedWriter(
+            new OutputStreamWriter(
+                    new FileOutputStream(path.toString() + "/config.json"),
+                    StandardCharsets.UTF_8
+            )
+    );
+
+    configWriter.write("configuration");
+
+    configWriter.close();
+    return 0;
   }
-
 }
