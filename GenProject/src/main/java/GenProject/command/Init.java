@@ -8,6 +8,8 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 
+
+
 @Command(name = "init", description = "Initialize a static site directory with the wanted sub-files")
 
 public class Init implements Callable<Integer> {
@@ -16,13 +18,6 @@ public class Init implements Callable<Integer> {
 
   @Override
   public Integer call() throws IOException {
-    final String baseIndexText = "titre: Mon premier article\n" +
-            "auteur: Bleuet Renard\n" +
-            "date: 2021-03-10"  +
-            "---\n" +
-            "# Mon premier article\n" +
-            "## Mon sous-titre\n" +
-            "Le contenu de mon article.";
 
     if (!(rootPathname.charAt(0) == '/')){
       System.out.println("The parameters must begin with /");
@@ -39,9 +34,16 @@ public class Init implements Callable<Integer> {
             )
     );
 
-    indexWriter.write(baseIndexText);
+
+    indexWriter.write( "titre: Mon premier article\n");
+    indexWriter.write( "auteur: Bleuet Renard\n");
+    indexWriter.write( "date: Aujourd'hui\n");
+    indexWriter.write( "---\n");
+
 
     indexWriter.close();
+
+
 
     Writer configWriter = new BufferedWriter(
             new OutputStreamWriter(
@@ -50,9 +52,12 @@ public class Init implements Callable<Integer> {
             )
     );
 
-    configWriter.write("configuration");
+    configWriter.write("{\"title\": \"BleuetRenard\",\n\"Data\": \"config\"}");
 
     configWriter.close();
+
+
+
     return 0;
   }
 }
