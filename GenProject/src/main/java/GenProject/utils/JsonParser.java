@@ -9,10 +9,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * This class allows to parse Json
- * @author Besseau Leonard
- */
 public class JsonParser {
     public static void parse(File f, JsonParserVisitor visitor) throws IOException {
         if (f.isDirectory()){
