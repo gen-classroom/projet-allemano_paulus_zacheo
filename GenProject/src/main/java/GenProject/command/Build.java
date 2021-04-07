@@ -1,14 +1,62 @@
 package GenProject.command;
 
-import java.util.concurrent.Callable;
-import picocli.CommandLine.Command;
+import GenProject.utils.Converter;
+import picocli.CommandLine;
 
-@Command(name = "build", description = "Build a static site")
-public class Build implements Callable<Integer> {
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-  @Override public Integer call() {
-    System.out.printf("build");
-    return 1;
+import org.apache.commons.io.FileUtils;
+
+
+@CommandLine.Command(name = "build",
+        exitCodeOnExecutionException = 2,
+        description = "Build a static site")
+public class Build implements Runnable {
+  @CommandLine.Parameters(description = "Path to site to build. (Must contain a config.json file)")
+  String filePath;
+  Converter converter;
+
+  public void run() {
+
+    Path path = Paths.get(filePath).normalize().toAbsolutePath();
+
+    File buildDirectory = new File(path + "/build"); //craft new dir
+    buildDirectory.mkdir();
+    File filesDirectory = new File(path.toString()); //get all dir from path
+    File configFile = new File(path+"/config.json");
+    if (!configFile.exists()){
+      throw new RuntimeException("Config file does not exist");
+    }
+    converter = new Converter(configFile);
+    try {
+      explore(filesDirectory, buildDirectory);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
+  //Get all the files and dir
+  void explore(File filesDirectory, File buildDirectory) throws IOException {
+
+    File[] listOfFiles = filesDirectory.listFiles();
+
+    if (listOfFiles != null) {
+      for (File file : listOfFiles) {
+        String fileName = file.getName();
+        if (fileName.contains(".md")) {//MD files become HTML files
+          converter.markdownToHTML(file, buildDirectory.toString());
+        } else if (!fileName.contains("config") && !file.isDirectory()) {
+          File newDirectory = new File(buildDirectory + "/" + fileName);
+          FileUtils.copyFile(file, newDirectory);
+        } else if (file.isDirectory() && !fileName.contains("build")) {
+          File newDirectory = new File(buildDirectory + "/" + fileName); //build new directory
+          newDirectory.mkdir();
+          explore(file, newDirectory);
+        }
+      }
+    }
+  }
 }
