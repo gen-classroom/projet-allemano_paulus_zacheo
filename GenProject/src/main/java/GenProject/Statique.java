@@ -1,9 +1,6 @@
 package GenProject;
 
-import GenProject.command.Build;
-import GenProject.command.Clean;
-import GenProject.command.Init;
-import GenProject.command.Serve;
+import GenProject.command.*;
 
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
@@ -12,7 +9,7 @@ import picocli.CommandLine.Command;
 @Command(
     name = "statique",
     description = "A brand new static site generator.",
-    subcommands = {Init.class, Clean.class, Build.class, Serve.class})
+    subcommands = {Init.class, Clean.class, Build.class, Serve.class, Version.class})
 public class Statique implements Callable<Integer> {
 
 
