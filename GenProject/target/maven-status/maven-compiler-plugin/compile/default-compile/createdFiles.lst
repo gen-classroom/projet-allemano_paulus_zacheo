@@ -1,0 +1,12 @@
+GenProject/utils/JsonParser.class
+GenProject/utils/Converter$1.class
+GenProject/utils/PageParser.class
+GenProject/utils/Converter.class
+GenProject/utils/JsonParserVisitor.class
+GenProject/command/Serve.class
+GenProject/command/Version.class
+GenProject/command/Build.class
+GenProject/command/Clean.class
+GenProject/Statique.class
+GenProject/utils/Metadata.class
+GenProject/command/Init.class
