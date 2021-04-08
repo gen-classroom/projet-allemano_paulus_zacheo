@@ -23,7 +23,7 @@ public class VersionTest
        ByteArrayOutputStream out = new ByteArrayOutputStream();
        PrintStream oldOut = System.out;
        System.setOut(new PrintStream(out));
-       new CommandLine(new Statique()).execute("version");        String version = "0.0.1";
-       assertEquals("v.0.0.1\n", out.toString());
+       new CommandLine(new Statique()).execute("version");     
+       assertEquals("v.0.1.0\n", out.toString());
     }
 }
