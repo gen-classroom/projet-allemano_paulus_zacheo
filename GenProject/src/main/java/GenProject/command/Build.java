@@ -47,7 +47,10 @@ public class Build implements Runnable {
       for (File file : listOfFiles) {
         String fileName = file.getName();
         if (fileName.contains(".md")) {//MD files become HTML files
+
+          //Md2Html.convert(file, buildDirectory.toString());
           converter.markdownToHTML(file, buildDirectory.toString());
+
         } else if (!fileName.contains("config") && !file.isDirectory()) {
           File newDirectory = new File(buildDirectory + "/" + fileName);
           FileUtils.copyFile(file, newDirectory);

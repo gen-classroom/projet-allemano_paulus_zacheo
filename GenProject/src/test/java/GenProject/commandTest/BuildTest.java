@@ -7,10 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -48,26 +45,44 @@ public class BuildTest
         File f = new File(dir+"/test1.md");
         f.createNewFile();
         FileWriter myWriter = new FileWriter(f);
-        myWriter.write( "titre: Mon premier article\n");
-        myWriter.write( "auteur: Bleuet Renard\n");
-        myWriter.write( "date: Aujourd'hui\n");
-        myWriter.write( "---\n");
+        String contenuIndex = "" +
+                "titre: Mon premier article\n" +
+                "auteur: Bleuet Renard\n" +
+                "date: Aujourd'hui\n" +
+                "---\n" +
+                "# Titre 1\n" +
+                "## titre 2\n" +
+                "Ceci est un site *internet*";
+
+        myWriter.write(contenuIndex);
         myWriter.close();
         File f1 = new File(dir+"/test2.md");
         f1.createNewFile();
         myWriter = new FileWriter(f1);
-        myWriter.write( "titre: Mon Second article\n");
-        myWriter.write( "auteur: Bleuet Renard\n");
-        myWriter.write( "date: Aujourd'hui\n");
-        myWriter.write( "---\n");
+        contenuIndex = "" +
+                "titre: Mon premier article\n" +
+                "auteur: Bleuet Renard\n" +
+                "date: Aujourd'hui\n" +
+                "---\n" +
+                "# Titre 1\n" +
+                "## titre 2\n" +
+                "Ceci est un autre  site *internet*";
+
+        myWriter.write(contenuIndex);
         myWriter.close();
         File f2 = new File(dir+"/test3.md");
         f2.createNewFile();
         myWriter = new FileWriter(f2);
-        myWriter.write( "titre: Mon Troisième article\n");
-        myWriter.write( "auteur: Bleuet Renard\n");
-        myWriter.write( "date: Aujourd'hui\n");
-        myWriter.write( "---\n");
+        contenuIndex = "" +
+                "titre: Mon premier article\n" +
+                "auteur: Bleuet Renard\n" +
+                "date: Aujourd'hui\n" +
+                "---\n" +
+                "# Titre 1\n" +
+                "## titre 2\n" +
+                "Ceci est encore un autre site *internet*";
+
+        myWriter.write(contenuIndex);
         myWriter.close();
 
         // Exec command
@@ -86,6 +101,88 @@ public class BuildTest
         assertTrue(file.exists());
     }
 
+    @Test
+    public void buildShouldWriteTheCorrectContentToHtmlFile() throws IOException {
+        boolean success =false;
+        FileReader input = new FileReader(DIR_NAME + "/build/content/test1.html");
+        BufferedReader in = new BufferedReader(input);
+        String content = "";
+        String msg = "";
+        while((content = in.readLine()) != null)  {
+            msg += content+"\n";
+        }
+        String result = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<title>BleuetRenard</title>\n" +
+                "<meta name=\"Data\" content=\"config\">\n" +
+                "<meta name=\"title\" content=\" Mon premier article\">\n" +
+                "<meta name=\"author\" content=\" Bleuet Renard\">\n" +
+                "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h1>Titre 1</h1>\n" +
+                "<h2>titre 2</h2>\n" +
+                "<p>Ceci est un site <em>internet</em></p>\n" +
+                "</body>\n" +
+                "</html>\n";
+        if(msg.equals(result)) {
+            success = true;
+        }
+        input = new FileReader(DIR_NAME + "/build/content/test2.html");
+        in = new BufferedReader(input);
+        content = "";
+        msg = "";
+        while((content = in.readLine()) != null)  {
+            msg += content+"\n";
+        }
+        result = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<title>BleuetRenard</title>\n" +
+                "<meta name=\"Data\" content=\"config\">\n" +
+                "<meta name=\"title\" content=\" Mon premier article\">\n" +
+                "<meta name=\"author\" content=\" Bleuet Renard\">\n" +
+                "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h1>Titre 1</h1>\n" +
+                "<h2>titre 2</h2>\n" +
+                "<p>Ceci est un autre  site <em>internet</em></p>\n" +
+                "</body>\n" +
+                "</html>\n";
+        if(msg.equals(result)) {
+            success = true;
+        }
+        input = new FileReader(DIR_NAME + "/build/content/test3.html");
+        in = new BufferedReader(input);
+        content = "";
+        msg = "";
+        while((content = in.readLine()) != null)  {
+            msg += content+"\n";
+        }
+        result = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "<title>BleuetRenard</title>\n" +
+                "<meta name=\"Data\" content=\"config\">\n" +
+                "<meta name=\"title\" content=\" Mon premier article\">\n" +
+                "<meta name=\"author\" content=\" Bleuet Renard\">\n" +
+                "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<h1>Titre 1</h1>\n" +
+                "<h2>titre 2</h2>\n" +
+                "<p>Ceci est encore un autre site <em>internet</em></p>\n" +
+                "</body>\n" +
+                "</html>\n";
+        if(msg.equals(result)) {
+            success = true;
+        }
+
+        assertTrue(success);
+
+    }
 
 
 
