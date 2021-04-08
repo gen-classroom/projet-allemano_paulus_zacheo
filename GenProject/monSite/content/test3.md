@@ -1,4 +1,7 @@
-titre: Mon Troisième article
+titre: Mon premier article
 auteur: Bleuet Renard
 date: Aujourd'hui
 ---
+# Titre 1
+## titre 2
+Ceci est encore un autre site *internet*

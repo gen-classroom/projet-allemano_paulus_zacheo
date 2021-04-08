@@ -6,7 +6,9 @@ import java.util.concurrent.Callable;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
-
+import org.commonmark.node.*;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 
 
@@ -34,13 +36,17 @@ public class Init implements Callable<Integer> {
             )
     );
 
+    String contenuIndex = "" +
+            "titre: Mon premier article\n" +
+            "auteur: Bleuet Renard\n" +
+            "date: Aujourd'hui\n" +
+            "---\n" +
+            "# Titre 1\n" +
+            "## titre 2\n" +
+            "Ceci est un site *internet*";
 
-    indexWriter.write( "titre: Mon premier article\n");
-    indexWriter.write( "auteur: Bleuet Renard\n");
-    indexWriter.write( "date: Aujourd'hui\n");
-    indexWriter.write( "---\n");
 
-
+    indexWriter.write(contenuIndex);
     indexWriter.close();
 
 
