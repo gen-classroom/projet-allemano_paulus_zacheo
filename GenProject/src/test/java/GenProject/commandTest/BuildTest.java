@@ -114,6 +114,7 @@ public class BuildTest
         String result = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
+                "<meta charset=\"utf-8\">\n" +
                 "<title>BleuetRenard</title>\n" +
                 "<meta name=\"Data\" content=\"config\">\n" +
                 "<meta name=\"title\" content=\" Mon premier article\">\n" +
@@ -121,6 +122,8 @@ public class BuildTest
                 "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
                 "</head>\n" +
                 "<body>\n" +
+                "<ul>\n<li><a href=\"/index.html\">home</a></li>\n" +
+                "<li><a href=\"/content/page.html\">page</a></li>\n</ul>\n"+
                 "<h1>Titre 1</h1>\n" +
                 "<h2>titre 2</h2>\n" +
                 "<p>Ceci est un site <em>internet</em></p>\n" +
@@ -139,6 +142,7 @@ public class BuildTest
         result = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
+                "<meta charset=\"utf-8\">\n" +
                 "<title>BleuetRenard</title>\n" +
                 "<meta name=\"Data\" content=\"config\">\n" +
                 "<meta name=\"title\" content=\" Mon premier article\">\n" +
@@ -146,6 +150,8 @@ public class BuildTest
                 "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
                 "</head>\n" +
                 "<body>\n" +
+                "<ul>\n<li><a href=\"/index.html\">home</a></li>\n" +
+                "<li><a href=\"/content/page.html\">page</a></li>\n</ul>\n"+
                 "<h1>Titre 1</h1>\n" +
                 "<h2>titre 2</h2>\n" +
                 "<p>Ceci est un autre  site <em>internet</em></p>\n" +
@@ -164,6 +170,7 @@ public class BuildTest
         result = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
+                "<meta charset=\"utf-8\">\n" +
                 "<title>BleuetRenard</title>\n" +
                 "<meta name=\"Data\" content=\"config\">\n" +
                 "<meta name=\"title\" content=\" Mon premier article\">\n" +
@@ -171,11 +178,13 @@ public class BuildTest
                 "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
                 "</head>\n" +
                 "<body>\n" +
+                "<ul>\n<li><a href=\"/index.html\">home</a></li>\n" +
+                "<li><a href=\"/content/page.html\">page</a></li>\n</ul>\n"+
                 "<h1>Titre 1</h1>\n" +
                 "<h2>titre 2</h2>\n" +
                 "<p>Ceci est encore un autre site <em>internet</em></p>\n" +
                 "</body>\n" +
-                "</html>\n";
+                "</html>§\n";
         if(msg.equals(result)) {
             success = true;
         }
