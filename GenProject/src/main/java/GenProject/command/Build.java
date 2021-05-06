@@ -53,7 +53,14 @@ public class Build implements Runnable {
           FileReader fr = new FileReader(f1);
           BufferedReader br = new BufferedReader(fr);
 
-          File f2 = new File("./monSite/build/index.html");
+          File f2 =null;
+          if (fileName =="index.md"){
+             f2 = new File("./monSite/build/index.html");
+          }
+          else {
+            String name = fileName.substring(0,6);
+             f2 = new File("./monSite/build/content/"+name+"html");
+          }
 
 
           String str = "";
@@ -61,7 +68,8 @@ public class Build implements Runnable {
           while ((str = br.readLine() )!= null){
             FileLayoutContent += str;
           }
-          fr = new FileReader(f2);
+          f1 = new File("./monSite/content/"+fileName);
+          fr = new FileReader(f1);
           br = new BufferedReader(fr);
           str = "";
           String FileContent = "";
@@ -73,10 +81,16 @@ public class Build implements Runnable {
           for (int i = 0; i != FileContent.length();i++){
             fin += FileContent.charAt(i);
             if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='y' ){
+              fin+="\n";
               for(int j = 0; j != FileLayoutContent.length();j++){
                 fin+= FileLayoutContent.charAt(j);
+                if (FileLayoutContent.charAt(j)=='>'){
+                  fin+="\n";
+                }
               }
-
+            }
+            if (FileContent.charAt(i)=='>'){
+              fin+="\n";
             }
           }
 
