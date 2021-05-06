@@ -53,12 +53,12 @@ public class Build implements Runnable {
           FileReader fr = new FileReader(f1);
           BufferedReader br = new BufferedReader(fr);
 
+          String name = fileName.substring(0,6);
           File f2 =null;
-          if (fileName =="index.md"){
+          if (fileName.equals("index.md")){
              f2 = new File("./monSite/build/index.html");
           }
           else {
-            String name = fileName.substring(0,6);
              f2 = new File("./monSite/build/content/"+name+"html");
           }
 
@@ -68,7 +68,12 @@ public class Build implements Runnable {
           while ((str = br.readLine() )!= null){
             FileLayoutContent += str;
           }
-          f1 = new File("./monSite/content/"+fileName);
+          if(name.equals("index.")){
+            f1 = new File("./monSite/build/"+name+"html");
+          }else{
+            f1 = new File("./monSite/build/content/"+name+"html");
+          }
+
           fr = new FileReader(f1);
           br = new BufferedReader(fr);
           str = "";
@@ -78,10 +83,12 @@ public class Build implements Runnable {
           }
 
           String fin ="";
+          boolean oneTime = false;
           for (int i = 0; i != FileContent.length();i++){
             fin += FileContent.charAt(i);
-            if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='y' ){
+            if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='y' && !oneTime){
               fin+="\n";
+              oneTime = true;
               for(int j = 0; j != FileLayoutContent.length();j++){
                 fin+= FileLayoutContent.charAt(j);
                 if (FileLayoutContent.charAt(j)=='>'){
