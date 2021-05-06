@@ -3,8 +3,7 @@ package GenProject.command;
 import GenProject.utils.Converter;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -50,6 +49,47 @@ public class Build implements Runnable {
 
           //Md2Html.convert(file, buildDirectory.toString());
           converter.markdownToHTML(file, buildDirectory.toString());
+          File f1 = new File("./monSite/build/template/menu.html");
+          FileReader fr = new FileReader(f1);
+          BufferedReader br = new BufferedReader(fr);
+
+          File f2 = new File("./monSite/build/index.html");
+
+
+          String str = "";
+          String FileLayoutContent = "";
+          while ((str = br.readLine() )!= null){
+            FileLayoutContent += str;
+          }
+          fr = new FileReader(f2);
+          br = new BufferedReader(fr);
+          str = "";
+          String FileContent = "";
+          while ((str = br.readLine() )!= null){
+            FileContent += str;
+          }
+
+          String fin ="";
+          for (int i = 0; i != FileContent.length();i++){
+            fin += FileContent.charAt(i);
+            if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='y' ){
+              for(int j = 0; j != FileLayoutContent.length();j++){
+                fin+= FileLayoutContent.charAt(j);
+              }
+
+            }
+          }
+
+          FileWriter fw = new FileWriter(f2);
+          BufferedWriter bw = new BufferedWriter(fw);
+          bw.write(fin);
+          bw.flush();
+          bw.close();
+          fw.close();
+          br.close();
+          fr.close();
+
+
 
         } else if (!fileName.contains("config") && !file.isDirectory()) {
           File newDirectory = new File(buildDirectory + "/" + fileName);
