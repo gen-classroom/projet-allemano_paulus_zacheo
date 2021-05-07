@@ -3,8 +3,7 @@ package GenProject.command;
 import GenProject.utils.Converter;
 import picocli.CommandLine;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -50,6 +49,77 @@ public class Build implements Runnable {
 
           //Md2Html.convert(file, buildDirectory.toString());
           converter.markdownToHTML(file, buildDirectory.toString());
+          File f1 = new File("./monSite/build/template/menu.html");
+          FileReader fr = new FileReader(f1);
+          BufferedReader br = new BufferedReader(fr);
+
+          String name = fileName.substring(0,6);
+          File f2 = null;
+          if (fileName.equals("index.md")){
+             f2 = new File("./monSite/build/index.html");
+          }
+          else {
+             f2 = new File("./monSite/build/content/"+name+"html");
+          }
+
+
+          String str = "";
+          String FileLayoutContent = "";
+          while ((str = br.readLine() )!= null){
+            FileLayoutContent += str;
+          }
+          if(name.equals("index.")){
+            f1 = new File("./monSite/build/"+name+"html");
+          }else{
+            f1 = new File("./monSite/build/content/"+name+"html");
+          }
+
+          fr = new FileReader(f1);
+          br = new BufferedReader(fr);
+          str = "";
+          String FileContent = "";
+          while ((str = br.readLine() )!= null){
+            FileContent += str;
+          }
+
+          String fin ="";
+          String charset ="<meta charset=\"utf-8\">";
+          boolean oneTime = false;
+          boolean scdTime = false;
+          for (int i = 0; i != FileContent.length();i++){
+            fin += FileContent.charAt(i);
+            if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='y' && !oneTime){
+              fin+="\n";
+              oneTime = true;
+              for(int j = 0; j != FileLayoutContent.length();j++){
+                fin+= FileLayoutContent.charAt(j);
+                if (FileLayoutContent.charAt(j)=='>'){
+                  fin+="\n";
+                }
+              }
+            }
+            if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='"' && !scdTime){
+              fin+="\n";
+              scdTime = true;
+              for(int j = 0; j != charset.length();j++){
+                fin += charset.charAt(j);
+              }
+            }
+            if (FileContent.charAt(i)=='>'){
+              fin+="\n";
+            }
+          }
+
+          FileWriter fw = new FileWriter(f2);
+          BufferedWriter bw = new BufferedWriter(fw);
+          bw.write(fin);
+          bw.flush();
+          bw.close();
+          fw.close();
+          br.close();
+          fr.close();
+
+
 
         } else if (!fileName.contains("config") && !file.isDirectory()) {
           File newDirectory = new File(buildDirectory + "/" + fileName);
