@@ -24,6 +24,6 @@ public class VersionTest
        PrintStream oldOut = System.out;
        System.setOut(new PrintStream(out));
        new CommandLine(new Statique()).execute("version");     
-       assertEquals("v.0.1.0\n", out.toString());
+       assertEquals("v.0.2.0\n", out.toString());
     }
 }
