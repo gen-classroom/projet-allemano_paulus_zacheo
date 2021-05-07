@@ -118,6 +118,7 @@ public class BuildTest
                 "<title>\n" +
                 "BleuetRenard</title>\n" +
                 "<meta name=\"Data\" content=\"config\">\n" +
+                "<meta charset=\"utf-8\">\n" +
                 "<meta name=\"title\" content=\" Mon premier article\">\n" +
                 "<meta name=\"author\" content=\" Bleuet Renard\">\n" +
                 "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
@@ -147,6 +148,7 @@ public class BuildTest
                 "<title>\n" +
                 "BleuetRenard</title>\n" +
                 "<meta name=\"Data\" content=\"config\">\n" +
+                "<meta charset=\"utf-8\">\n" +
                 "<meta name=\"title\" content=\" Mon premier article\">\n" +
                 "<meta name=\"author\" content=\" Bleuet Renard\">\n" +
                 "<meta name=\"date\" content=\" Aujourd'hui\">\n" +
@@ -176,6 +178,7 @@ public class BuildTest
                 "<title>\n" +
                 "BleuetRenard</title>\n" +
                 "<meta name=\"Data\" content=\"config\">\n" +
+                "<meta charset=\"utf-8\">\n" +
                 "<meta name=\"title\" content=\" Mon premier article\">\n" +
                 "<meta name=\"author\" content=\" Bleuet Renard\">\n" +
                 "<meta name=\"date\" content=\" Aujourd'hui\">\n" +

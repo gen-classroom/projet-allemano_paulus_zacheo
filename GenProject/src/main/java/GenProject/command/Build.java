@@ -54,7 +54,7 @@ public class Build implements Runnable {
           BufferedReader br = new BufferedReader(fr);
 
           String name = fileName.substring(0,6);
-          File f2 =null;
+          File f2 = null;
           if (fileName.equals("index.md")){
              f2 = new File("./monSite/build/index.html");
           }
@@ -83,7 +83,9 @@ public class Build implements Runnable {
           }
 
           String fin ="";
+          String charset ="<meta charset=\"utf-8\">";
           boolean oneTime = false;
+          boolean scdTime = false;
           for (int i = 0; i != FileContent.length();i++){
             fin += FileContent.charAt(i);
             if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='y' && !oneTime){
@@ -94,6 +96,13 @@ public class Build implements Runnable {
                 if (FileLayoutContent.charAt(j)=='>'){
                   fin+="\n";
                 }
+              }
+            }
+            if (FileContent.charAt(i)=='>' && FileContent.charAt(i-1)=='"' && !scdTime){
+              fin+="\n";
+              scdTime = true;
+              for(int j = 0; j != charset.length();j++){
+                fin += charset.charAt(j);
               }
             }
             if (FileContent.charAt(i)=='>'){
