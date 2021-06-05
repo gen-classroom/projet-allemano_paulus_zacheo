@@ -1,15 +1,14 @@
 package GenProject.commandTest;
 
 import GenProject.Statique;
-import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
 import java.io.*;
 
-import static junit.framework.TestCase.assertFalse;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -200,16 +199,21 @@ public class BuildTest
 
     }
 
+
+
     @Test
     public void ShouldSignalWhenWatch() throws IOException {
-        new CommandLine(new Statique()).execute( "build --watch", DIR_NAME);
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
 
-        String expectedOutput  = "Watch parameter is ON";
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream oldOut = System.out;
+        System.setOut(new PrintStream(out));
+
+        new CommandLine(new Statique()).execute( "build","--watch", DIR_NAME);
+
+        String expectedOutput  = "Watch parameter is ON\n";
 
         // Do the actual assertion.
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, out.toString());
 
     }
 
