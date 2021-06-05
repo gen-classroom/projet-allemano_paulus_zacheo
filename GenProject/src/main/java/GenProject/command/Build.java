@@ -13,28 +13,47 @@ import org.apache.commons.io.FileUtils;
 @CommandLine.Command(name = "build",
         exitCodeOnExecutionException = 2,
         description = "Build a static site")
+
+
 public class Build implements Runnable {
   @CommandLine.Parameters(description = "Path to site to build. (Must contain a config.json file)")
   String filePath;
   Converter converter;
 
+  @CommandLine.Option(names = "--watch", description = "Watch option")
+  Boolean watch = false;
+
   public void run() {
 
-    Path path = Paths.get(filePath).normalize().toAbsolutePath();
 
-    File buildDirectory = new File(path + "/build"); //craft new dir
-    buildDirectory.mkdir();
-    File filesDirectory = new File(path.toString()); //get all dir from path
-    File configFile = new File(path+"/config.json");
-    if (!configFile.exists()){
-      throw new RuntimeException("Config file does not exist");
+    if (watch){
+      System.out.println("Watch parameter is ON");
     }
-    converter = new Converter(configFile);
-    try {
-      explore(filesDirectory, buildDirectory);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
+    do {
+
+      Path path = Paths.get(filePath).normalize().toAbsolutePath();
+
+      File buildDirectory = new File(path + "/build"); //craft new dir
+      buildDirectory.mkdir();
+      File filesDirectory = new File(path.toString()); //get all dir from path
+      File configFile = new File(path + "/config.json");
+      if (!configFile.exists()) {
+        throw new RuntimeException("Config file does not exist");
+      }
+      converter = new Converter(configFile);
+      try {
+        explore(filesDirectory, buildDirectory);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+   }while(watch);
   }
 
   //Get all the files and dir
