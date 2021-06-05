@@ -119,8 +119,6 @@ public class Build implements Runnable {
           br.close();
           fr.close();
 
-
-
         } else if (!fileName.contains("config") && !file.isDirectory()) {
           File newDirectory = new File(buildDirectory + "/" + fileName);
           FileUtils.copyFile(file, newDirectory);
