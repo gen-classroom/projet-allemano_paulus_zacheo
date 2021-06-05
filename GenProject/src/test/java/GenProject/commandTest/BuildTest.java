@@ -10,6 +10,7 @@ import picocli.CommandLine;
 import java.io.*;
 
 import static junit.framework.TestCase.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -196,6 +197,19 @@ public class BuildTest
         }
 
         assertTrue(success);
+
+    }
+
+    @Test
+    public void ShouldSignalWhenWatch() throws IOException {
+        new CommandLine(new Statique()).execute( "build --watch", DIR_NAME);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        String expectedOutput  = "Watch parameter is ON";
+
+        // Do the actual assertion.
+        assertEquals(expectedOutput, outContent.toString());
 
     }
 
