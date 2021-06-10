@@ -1,0 +1,6 @@
+GenProject/out/
+GenProject/.idea/
+GenProject/.idea_modules/
+GenProject/*.iml
+GenProject/*.ipr
+GenProject/*.iws
