@@ -27,7 +27,7 @@ public class Serve implements Callable<Integer> {
       System.out.println("Watch parameter is ON");
     }
 
-    do {
+    //do {
       try {
         File fileToOpen = new File("GenProject" + "/" + userPath + "/" + "build" + "/" + "index.html");
         Desktop.getDesktop().open(fileToOpen);
@@ -40,7 +40,7 @@ public class Serve implements Callable<Integer> {
         e.printStackTrace();
       }
 
-    }while(watch);
+    //}while(watch);
 
     return 0;
   }

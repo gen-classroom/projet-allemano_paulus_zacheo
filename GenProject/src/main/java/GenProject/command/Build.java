@@ -30,7 +30,7 @@ public class Build implements Runnable {
       System.out.println("Watch parameter is ON");
     }
 
-    do {
+    //do {
 
       Path path = Paths.get(filePath).normalize().toAbsolutePath();
 
@@ -53,7 +53,7 @@ public class Build implements Runnable {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-   }while(watch);
+   //}while(watch);
   }
 
   //Get all the files and dir
