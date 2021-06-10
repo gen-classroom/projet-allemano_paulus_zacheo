@@ -53,7 +53,7 @@ public class Build implements Runnable {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-   }while(watch);
+    }while(watch);
   }
 
   //Get all the files and dir
