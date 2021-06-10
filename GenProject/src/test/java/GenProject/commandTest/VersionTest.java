@@ -21,9 +21,8 @@ public class VersionTest
     public void shouldReturnTheVersion()
     {
        ByteArrayOutputStream out = new ByteArrayOutputStream();
-       PrintStream oldOut = System.out;
        System.setOut(new PrintStream(out));
        new CommandLine(new Statique()).execute("version");     
-       assertEquals("v.0.2.0\n", out.toString());
+       assertEquals("v.0.2.0\r\n", out.toString());
     }
 }

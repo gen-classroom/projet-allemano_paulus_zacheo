@@ -27,12 +27,11 @@ public class ServeTest
     public void ShouldSignalWhenWatch() throws IOException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream oldOut = System.out;
         System.setOut(new PrintStream(out));
 
         new CommandLine(new Statique()).execute( "serve","--watch",DIR_NAME);
 
-        String expectedOutput  = "Watch parameter is ON\n";
+        String expectedOutput  = "Watch parameter is ON\r\n";
 
         // Do the actual assertion.
         Assertions.assertEquals(expectedOutput, out.toString());
