@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: GenProject.commandTest.ServeTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.305 s - in GenProject.commandTest.ServeTest
