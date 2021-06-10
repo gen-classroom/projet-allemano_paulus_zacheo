@@ -1,5 +1,5 @@
 # GEN
-[![Java CI with Maven](https://github.com/gen-classroom/projet-allemano_paulus_zacheo/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/gen-classroom/projet-allemano_paulus_zacheo/actions/workflows/maven.yml)
+[![Java CI with Maven](https://github.com/gen-classroom/projet-allemano_paulus_zacheo/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/gen-classroom/projet-allemano_paulus_zacheo/actions/workflows/maven.yml) [![Total alerts](https://img.shields.io/lgtm/alerts/g/gen-classroom/projet-allemano_paulus_zacheo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gen-classroom/projet-allemano_paulus_zacheo/alerts/)
 
 ## Installation 
 testasd
