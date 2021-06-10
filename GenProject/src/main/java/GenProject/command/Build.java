@@ -1,3 +1,11 @@
+/**
+ -----------------------------------------------------------------------------------
+ @Files     : Build
+ @Author   : Luca Zacheo, Enzo Allemano, Yohann Paulus
+ @Date        : 10.06.2021
+ -----------------------------------------------------------------------------------
+ */
+
 package GenProject.command;
 
 import GenProject.utils.Converter;
@@ -56,7 +64,11 @@ public class Build implements Runnable {
     }while(watch);
   }
 
-  //Get all the files and dir
+  /**
+   * Fonction qui effectue permet d'explorer et convertir les fichiers trouvé
+   * @param filesDirectory Répertoire build du site statique
+   * @param buildDirectory Répertoire ou se trouve les fichiers a convertir
+   */
   void explore(File filesDirectory, File buildDirectory) throws IOException {
 
     File[] listOfFiles = filesDirectory.listFiles();

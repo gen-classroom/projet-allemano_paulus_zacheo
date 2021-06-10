@@ -1,3 +1,11 @@
+/**
+ -----------------------------------------------------------------------------------
+ @Files     : BenchmarkStatique
+ @Author   : Luca Zacheo, Enzo Allemano, Yohann Paulus
+ @Date        : 10.06.2021
+ -----------------------------------------------------------------------------------
+ */
+
 package GenProject.benchmark;
 
 import GenProject.Statique;
