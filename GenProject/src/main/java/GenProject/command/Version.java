@@ -1,6 +1,7 @@
 package GenProject.command;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 
 import picocli.CommandLine;
@@ -15,9 +16,16 @@ public class Version implements Callable<Integer> {
 
     @Override public Integer call() throws Exception {
 
-        MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(new FileReader("pom.xml"));
-        spec.commandLine().getOut().println("v."+model.getVersion());
+        try {
+            MavenXpp3Reader reader = new MavenXpp3Reader();
+            FileReader fr = new FileReader("pom.xml");
+            Model model = reader.read(fr);
+            spec.commandLine().getOut().println("v." + model.getVersion());
+            fr.close();
+        }
+        catch (IOException e){
+            System.out.println(e);
+        }
         return 1;
     }
 }
