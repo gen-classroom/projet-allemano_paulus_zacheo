@@ -1,8 +1,7 @@
 [![Java CI with Maven](https://github.com/gen-classroom/projet-allemano_paulus_zacheo/actions/workflows/maven.yml/badge.svg)](https://github.com/gen-classroom/projet-allemano_paulus_zacheo/actions/workflows/maven.yml) [![Total alerts](https://img.shields.io/lgtm/alerts/g/gen-classroom/projet-allemano_paulus_zacheo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gen-classroom/projet-allemano_paulus_zacheo/alerts/) [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/gen-classroom/projet-allemano_paulus_zacheo.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gen-classroom/projet-allemano_paulus_zacheo/context:java)
 # GEN
 
-## Installation 
-testasd
+## Installation
 
 #### Build and unzip the project 
 
