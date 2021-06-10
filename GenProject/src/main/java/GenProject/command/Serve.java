@@ -13,19 +13,34 @@ import picocli.CommandLine.Command;
 @Command(name = "serve", description = "Serve a static site")
 public class Serve implements Callable<Integer> {
 
+
+  @CommandLine.Option(names = "--watch", description = "Watch option")
+  Boolean watch = false;
+
   @CommandLine.Parameters(index = "0", description = "Path of the build directory for the website")
   String userPath;
 
   @Override public Integer call()
   {
-    try
-    {
-      File fileToOpen = new File( "GenProject" + "/" + userPath + "/" + "build" +  "/" + "index.html");
-      Desktop.getDesktop().open(fileToOpen);
-    } catch (IOException e)
-    {
-      e.printStackTrace();
+
+    if (watch){
+      System.out.println("Watch parameter is ON");
     }
+
+    do {
+      try {
+        File fileToOpen = new File("GenProject" + "/" + userPath + "/" + "build" + "/" + "index.html");
+        Desktop.getDesktop().open(fileToOpen);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+
+    }while(watch);
 
     return 0;
   }
