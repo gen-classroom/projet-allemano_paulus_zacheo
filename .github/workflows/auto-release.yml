@@ -20,9 +20,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./GenProject/target/statique.zip
-          asset_name: statique.zip
-          asset_content_type: application/zip
+          asset_path: ./GenProject/target/GenProject-0.2.0.jar
+          asset_name: GenProject-0.2.0.jar
       - name: Upload Release Asset Javadoc
         id: upload-release-asset-javadoc
         uses: actions/upload-release-asset@v1
