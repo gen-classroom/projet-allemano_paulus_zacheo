@@ -42,11 +42,17 @@ This command creates the build directory in the given `path`. It converts all th
 
 Deletes the build directory. The `path` should be the same as the one for `init`.
 
-**Version :** 
+**Version command:** 
 
 `statique -version`
 
 Show the version of the static site.
+
+**Serve command :** 
+
+`statique serve <path>`
+
+Open generated htlm in a browser.
 
 ## Page format
 
