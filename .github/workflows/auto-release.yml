@@ -1,25 +1,30 @@
----
-name: "tagged-release"
-
 on:
   push:
+  
     tags:
-      - "v*"
+    - 'v*' # Tous les tags qui commencent par v
+
+name: Upload Release Asset
 
 jobs:
-  tagged-release:
-    name: "Tagged Release"
-    runs-on: "ubuntu-latest"
-
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
     steps:
-      # ...
-      - name: "Build & test"
-        run: |
-          echo "done!"
-
-      - uses: "action/action-automatic-releases@latest"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-            *.jar
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./GenProject/target/statique.zip
+          asset_name: statique.zip
+          asset_content_type: application/zip
+      - name: Upload Release Asset Javadoc
+        id: upload-release-asset-javadoc
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
