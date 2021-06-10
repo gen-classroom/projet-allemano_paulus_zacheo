@@ -1,0 +1,2 @@
+JMH S 30 GenProject.benchmark.Benchmark S 61 GenProject.benchmark.jmh_generated.Benchmark_building_jmhTest S 8 building S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MILLISECONDS E E 
+JMH S 38 GenProject.benchmark.BenchmarkStatique S 69 GenProject.benchmark.jmh_generated.BenchmarkStatique_building_jmhTest S 8 building S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MILLISECONDS E E 
