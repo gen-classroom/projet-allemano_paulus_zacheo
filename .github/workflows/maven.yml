@@ -22,5 +22,5 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: cd GenProject
-      run: mvn -B package --file pom.xml
+    - run: cd GenProject
+    - run: mvn -B package --file pom.xml
