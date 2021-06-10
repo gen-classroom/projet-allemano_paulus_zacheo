@@ -1,1 +1,1 @@
-JMH S 38 GenProject.benchmark.BenchmarkStatique S 75 GenProject.benchmark.jmh_generated.BenchmarkStatique_benchmarkBuild_jmhTest S 14 benchmarkBuild S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 11 NANOSECONDS E E 
+JMH S 38 GenProject.benchmark.BenchmarkStatique S 75 GenProject.benchmark.jmh_generated.BenchmarkStatique_benchmarkBuild_jmhTest S 14 benchmarkBuild S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MILLISECONDS E E 
