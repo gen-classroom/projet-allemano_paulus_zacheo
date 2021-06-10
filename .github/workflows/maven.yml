@@ -21,7 +21,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Go to GenProject
-      run: cd GenProject
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: | 
+            cd GenProject
+            mvn -B package --file pom.xml
+            mvn clean verify
