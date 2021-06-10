@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "done!"
 
-      - uses: "project-allemano_paulus_zacheo/action-automatic-releases@latest"
+      - uses: "action/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
