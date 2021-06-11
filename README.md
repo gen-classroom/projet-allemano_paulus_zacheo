@@ -31,9 +31,10 @@ Initialize the site to the given path. It creates an **index.md** file and a **c
 
 **Build command** :
 
-`statique build <path>`
+`statique build [--watch] <path>`
 
 This command creates the build directory in the given `path`. It converts all the markdown files present in the `path` to html files and copies them in build.
+You can also add the optional paramater `--watch` to automatically rebuild when the files are modified 
 
 **Clean command :**
 
@@ -49,9 +50,10 @@ Show the version of the static site.
 
 **Serve command :** 
 
-`statique serve <path>`
+`statique serve [--watch] <path>`
 
 Open generated htlm in a browser.
+You can also add the optional paramater `--watch` to automatically refresh the web page browser when the files are modified
 
 ## Page format
 
