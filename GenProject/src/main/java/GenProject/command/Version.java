@@ -16,7 +16,7 @@ public class Version implements Callable<Integer> {
     @Override public Integer call() throws Exception {
 
         MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(new FileReader("pom.xml")); lgtm [java/input-resource-leak]
+        Model model = reader.read(new FileReader("pom.xml"));
         spec.commandLine().getOut().println("v."+model.getVersion());
         return 1;
     }
